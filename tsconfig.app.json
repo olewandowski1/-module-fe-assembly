@@ -23,7 +23,14 @@
     "noUncheckedSideEffectImports": true,
 
     /* Type checking */
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+
+    /* Paths */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@node_modules/*": ["./node_modules/*"]
+    }
   },
   "include": ["src"]
 }
