@@ -7,7 +7,7 @@ export const AppContainer = () => {
 
   useEffect(() => {
     modulesManager.loadModules();
-  }, [modulesManager.loadModules]);
+  }, [modulesManager]);
 
   return <App modulesManager={modulesManager} />;
 };
