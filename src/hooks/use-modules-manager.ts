@@ -1,6 +1,6 @@
+import { Module, ModulesManagerType } from '@module/fe-core';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Module, ModulesManagerType } from '@module/fe-core';
 
 // Create a store to manage modules and its refs
 export const useModulesManager = create<ModulesManagerType>()(
@@ -8,6 +8,7 @@ export const useModulesManager = create<ModulesManagerType>()(
     (set, get) => ({
       modules: [],
       refs: [],
+      routes: [],
 
       // Load and cache all modules
       loadModules: async () => {
@@ -41,7 +42,7 @@ export const useModulesManager = create<ModulesManagerType>()(
       loadRefs: () => {
         const { modules } = get();
         const refs = modules
-          .map((module) => module.entry.refs)
+          .map((module) => module.entry['refs'])
           .filter(Boolean)
           .flat();
 
@@ -51,6 +52,16 @@ export const useModulesManager = create<ModulesManagerType>()(
       getRef: (name: string) => {
         const { refs } = get();
         return refs.find((ref) => ref.key === name);
+      },
+
+      loadRoutes: () => {
+        const { modules } = get();
+        const routes = modules
+          .map((module) => module.entry['routes'])
+          .filter(Boolean)
+          .flat();
+
+        set({ routes });
       },
     }),
     {

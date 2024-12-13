@@ -4,9 +4,12 @@ import { useEffect } from 'react';
 
 export const AppContainer = () => {
   const modulesManager = useModulesManager();
+  const { loadModules, loadRefs, loadRoutes } = modulesManager;
 
   useEffect(() => {
-    modulesManager.loadModules();
+    loadModules();
+    loadRefs();
+    loadRoutes();
   }, []);
 
   return <App modulesManager={modulesManager} />;
