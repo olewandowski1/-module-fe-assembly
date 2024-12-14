@@ -40,10 +40,14 @@ The `assembly` module leverages modern technologies to create a robust and effic
 
 ### Linking Modules for Development
 
-3. If you are developing with other modules (e.g., `core`), link it for local development:
+3. If you are developing with other modules (e.g., `core`), link them for local development. First, create a link from the package you want to attach to `assembly`. Then, inside the `assembly` module, link it.
+
    ```bash
    cd ../module-fe-core
-   pnpm link
+   pnpm link --global
+
+   cd ../module-fe-assembly
+   pnpm link --global @module/fe-core
    ```
 
 ### Running the Development Server
@@ -53,7 +57,7 @@ The `assembly` module leverages modern technologies to create a robust and effic
    pnpm dev
    ```
 
-## Tech Notes
+## Tech Doc
 
 - **useModulesManager**: The `useModulesManager` hook is a custom hook that manages the loading and caching of modules, references, and routes in the application. It leverages Zustand for state management and provides methods to load modules, load references, get a specific reference, and load routes. The hook is defined in `src/hooks/use-modules-manager.ts`.
 
