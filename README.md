@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+## Introduction
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The `module-fe-assembly` is an experimental environment created to demonstrate a modular app architecture. This module acts as the entry point for the entire application, linking and managing other modules as NPM packages. This `assembly` module has to be linked with `[module-fe-core](https://github.com/olewandowski1/module-fe-core)`.
 
-Currently, two official plugins are available:
+### Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The primary purpose of the `assembly` module is to:
 
-## Expanding the ESLint configuration
+- Enable modular development with linked reusable packages.
+- Provide a standardized, pre-configured development environment.
+- Serve as the central entry point for initializing and integrating all modules.
+- Create a high-performance environment with features like Hot Module Replacement (HMR).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+The `assembly` module leverages modern technologies to create a robust and efficient development environment:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- Foundation: **React 19 with TypeScript**
+- Build Tool: **Vite 6**
+- Styling: **Tailwind CSS**
+- UI Library: **shadcn/ui**
+- State Management: **Zustand**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+### Cloning the Repository
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/olewandowski1/module-fe-assembly.git
+   cd module-fe-assembly
+   ```
+
+### Installing Dependencies
+
+2. Install the required dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Linking Modules for Development
+
+3. If you are developing with other modules (e.g., `core`), link it for local development:
+   ```bash
+   cd ../module-fe-core
+   pnpm link
+   ```
+
+### Running the Development Server
+
+4. Start the development server:
+   ```bash
+   pnpm dev
+   ```
