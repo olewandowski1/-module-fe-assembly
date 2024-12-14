@@ -52,3 +52,16 @@ The `assembly` module leverages modern technologies to create a robust and effic
    ```bash
    pnpm dev
    ```
+
+## Tech Notes
+
+- **useModulesManager**: The `useModulesManager` hook is a custom hook that manages the loading and caching of modules, references, and routes in the application. It leverages Zustand for state management and provides methods to load modules, load references, get a specific reference, and load routes. The hook is defined in `src/hooks/use-modules-manager.ts`.
+
+  - **Methods**:
+
+    - `loadModules`: Asynchronously loads and caches all modules.
+    - `loadRefs`: Loads and caches all references from the modules.
+    - `getRef(name: string)`: Retrieves a specific reference by its name.
+    - `loadRoutes`: Loads and caches all routes from the modules.
+
+  - **Usage**: After initialization, the `ModulesManager` is passed to the `App` component. This is provided by `module-fe-core` package.
