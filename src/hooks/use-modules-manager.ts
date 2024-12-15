@@ -1,4 +1,4 @@
-import { Module, ModulesManagerType } from '@module/fe-core';
+import { Module, ModulesManagerType, Ref, Route } from '@module/fe-core';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -11,7 +11,7 @@ export const useModulesManager = create<ModulesManagerType>()(
       routes: [],
 
       // Load and cache all modules
-      loadModules: async () => {
+      loadModules: () => {
         const modulesImports = import.meta.glob(
           '/node_modules/@module/*/dist/index.es.js',
           { eager: true, import: 'default' }
@@ -41,7 +41,7 @@ export const useModulesManager = create<ModulesManagerType>()(
       // Load and cache all refs from modules
       loadRefs: () => {
         const { modules } = get();
-        const refs = modules
+        const refs: Ref[] = modules
           .map((module) => module.entry['refs'])
           .filter(Boolean)
           .flat();
@@ -56,7 +56,7 @@ export const useModulesManager = create<ModulesManagerType>()(
 
       loadRoutes: () => {
         const { modules } = get();
-        const routes = modules
+        const routes: Route[] = modules
           .map((module) => module.entry['routes'])
           .filter(Boolean)
           .flat();

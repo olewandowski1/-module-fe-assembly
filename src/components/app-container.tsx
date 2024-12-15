@@ -1,16 +1,15 @@
+import { useInitializeApp } from '@/hooks/use-initialize-app';
+import { useLocalesManager } from '@/hooks/use-locales-manager';
 import { useModulesManager } from '@/hooks/use-modules-manager';
 import { App } from '@module/fe-core';
-import { useEffect } from 'react';
 
 export const AppContainer = () => {
   const modulesManager = useModulesManager();
-  const { loadModules, loadRefs, loadRoutes } = modulesManager;
+  const localesManager = useLocalesManager();
 
-  useEffect(() => {
-    loadModules();
-    loadRefs();
-    loadRoutes();
-  }, []);
+  useInitializeApp(modulesManager, localesManager);
 
-  return <App modulesManager={modulesManager} />;
+  return (
+    <App modulesManager={modulesManager} localesManager={localesManager} />
+  );
 };
