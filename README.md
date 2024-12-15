@@ -69,3 +69,20 @@ The `assembly` module leverages modern technologies to create a robust and effic
     - `loadRoutes`: Loads and caches all routes from the modules.
 
   - **Usage**: After initialization, the `ModulesManager` is passed to the `App` component. This is provided by `module-fe-core` package.
+
+- **useInitializeApp**: The `useInitializeApp` hook initializes the application by loading modules, references, routes, and translations. It uses two managers: `modulesManager` and `localesManager`. The hook is defined in `src/hooks/use-initialize-app.ts`.
+
+  - **Methods**:
+
+    - `loadModules`: Loads and caches all modules.
+    - `loadRefs`: Loads and caches all references from the modules.
+    - `loadRoutes`: Loads and caches all routes from the modules.
+    - `loadTranslations`: Loads translations for the modules.
+    - `addDynamicTranslations`: Adds dynamic translations to the application.
+
+- **useLocalesManager**: The `useLocalesManager` hook is a custom hook that manages the loading and caching of translations in the application. It leverages Zustand for state management and provides methods to load translations and format messages. The hook is defined in `src/hooks/use-locales-manager.ts`.
+
+  - **Methods**:
+
+    - `loadTranslations(modules: ModulesManagerType['modules'])`: Loads and caches all translations from the modules.
+    - `formatMessage(namespace: string, key: string)`: Formats a message based on the provided namespace and key.
